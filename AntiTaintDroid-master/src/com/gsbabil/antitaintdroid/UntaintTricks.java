@@ -7,11 +7,11 @@
  *
  * When referencing AntiTaintDroid/ScrubDroid, please use the following
  * citation:
- *   Golam Sarwar, Olivier Mehani, Roksana Boreli, and Mohammed Ali Kaafar. “On
+ *   Golam Sarwar, Olivier Mehani, Roksana Boreli, and Mohammed Ali Kaafar. â€œOn
  *   the Effectiveness of Dynamic Taint Analysis for Protecting Against Private
- *   Information Leaks on Android-based Devices”. In: SECRYPT 2013, 10th
+ *   Information Leaks on Android-based Devicesâ€�. In: SECRYPT 2013, 10th
  *   International Conference on Security and Cryptography. Ed. by P. Samarati.
- *   ACM SIGSAC. Reykjávik, Iceland: SciTePress, July 2013. url:
+ *   ACM SIGSAC. ReykjÃ¡vik, Iceland: SciTePress, July 2013. url:
  *   http://www.nicta.com.au/pub?id=6865;
  *
  * [1] http://nicta.info/scrubdroid
@@ -80,6 +80,8 @@ public class UntaintTricks {
 		hashTrickNames.put("Remote Control Trick", 14);
 		hashTrickNames.put("Remote Dex Trick", 15);	
 		hashTrickNames.put("File LastModified Trick", 16);
+		hashTrickNames.put("Switch Statement Trick", 17);
+		hashTrickNames.put("String concat Trick", 18);
 	}
 
 	public List<String> getTrickNames() {
@@ -98,12 +100,12 @@ public class UntaintTricks {
 	public String bitmapCacheTrick(String in) {
 		String out = new String();
 
-		utils.statusUpdate("● " + utils.timeNow() + " Saving Bitmap Cache ... ");
+		utils.statusUpdate("â—� " + utils.timeNow() + " Saving Bitmap Cache ... ");
 		int res = utils.captureBitmapCache(in);
 
 		if (res == 0) {
 			utils.statusUpdate("(success)\n");
-			utils.statusUpdate("● " + utils.timeNow()
+			utils.statusUpdate("â—� " + utils.timeNow()
 					+ " Trying OCR over HTTP ... ");
 			String httpResponse = utils.httpFileUpload(MyApp.context
 					.getFilesDir() + "/" + MyApp.SCREENSHOT_FILENAME);
@@ -169,7 +171,311 @@ public class UntaintTricks {
 
 		return out;
 	}
-
+	public String concatTrick(String in){
+		String out = new String();
+		for(int i = 0; i < in.length(); i += 5){
+			out.concat(in.substring(i, i + 5));
+		}
+		return out;
+		
+	}
+	
+	
+	public String switchTrick(String in){
+		String out = new String();
+	
+		for(int i = 0; i < in.length(); i++){
+			switch(in.charAt(i)){
+			case ' ' :
+				out = out + ' ' ;
+				break ;
+				case '!' :
+				out = out + '!' ;
+				break ;
+				case '"' :
+				out = out + '"' ;
+				break ;
+				case '#' :
+				out = out + '#' ;
+				break ;
+				case '$' :
+				out = out + '$' ;
+				break ;
+				case '%' :
+				out = out + '%' ;
+				break ;
+				case '&' :
+				out = out + '&' ;
+				break ;
+				case '\'' :
+				out = out + '\'' ;
+				break ;
+				case '(' :
+				out = out + '(' ;
+				break ;
+				case ')' :
+				out = out + ')' ;
+				break ;
+				case '*' :
+				out = out + '*' ;
+				break ;
+				case '+' :
+				out = out + '+' ;
+				break ;
+				case ',' :
+				out = out + ',' ;
+				break ;
+				case '-' :
+				out = out + '-' ;
+				break ;
+				case '.' :
+				out = out + '.' ;
+				break ;
+				case '/' :
+				out = out + '/' ;
+				break ;
+				case '0' :
+				out = out + '0' ;
+				break ;
+				case '1' :
+				out = out + '1' ;
+				break ;
+				case '2' :
+				out = out + '2' ;
+				break ;
+				case '3' :
+				out = out + '3' ;
+				break ;
+				case '4' :
+				out = out + '4' ;
+				break ;
+				case '5' :
+				out = out + '5' ;
+				break ;
+				case '6' :
+				out = out + '6' ;
+				break ;
+				case '7' :
+				out = out + '7' ;
+				break ;
+				case '8' :
+				out = out + '8' ;
+				break ;
+				case '9' :
+				out = out + '9' ;
+				break ;
+				case ':' :
+				out = out + ':' ;
+				break ;
+				case ';' :
+				out = out + ';' ;
+				break ;
+				case '<' :
+				out = out + '<' ;
+				break ;
+				case '=' :
+				out = out + '=' ;
+				break ;
+				case '>' :
+				out = out + '>' ;
+				break ;
+				case '?' :
+				out = out + '?' ;
+				break ;
+				case '@' :
+				out = out + '@' ;
+				break ;
+				case 'A' :
+				out = out + 'A' ;
+				break ;
+				case 'B' :
+				out = out + 'B' ;
+				break ;
+				case 'C' :
+				out = out + 'C' ;
+				break ;
+				case 'D' :
+				out = out + 'D' ;
+				break ;
+				case 'E' :
+				out = out + 'E' ;
+				break ;
+				case 'F' :
+				out = out + 'F' ;
+				break ;
+				case 'G' :
+				out = out + 'G' ;
+				break ;
+				case 'H' :
+				out = out + 'H' ;
+				break ;
+				case 'I' :
+				out = out + 'I' ;
+				break ;
+				case 'J' :
+				out = out + 'J' ;
+				break ;
+				case 'K' :
+				out = out + 'K' ;
+				break ;
+				case 'L' :
+				out = out + 'L' ;
+				break ;
+				case 'M' :
+				out = out + 'M' ;
+				break ;
+				case 'N' :
+				out = out + 'N' ;
+				break ;
+				case 'O' :
+				out = out + 'O' ;
+				break ;
+				case 'P' :
+				out = out + 'P' ;
+				break ;
+				case 'Q' :
+				out = out + 'Q' ;
+				break ;
+				case 'R' :
+				out = out + 'R' ;
+				break ;
+				case 'S' :
+				out = out + 'S' ;
+				break ;
+				case 'T' :
+				out = out + 'T' ;
+				break ;
+				case 'U' :
+				out = out + 'U' ;
+				break ;
+				case 'V' :
+				out = out + 'V' ;
+				break ;
+				case 'W' :
+				out = out + 'W' ;
+				break ;
+				case 'X' :
+				out = out + 'X' ;
+				break ;
+				case 'Y' :
+				out = out + 'Y' ;
+				break ;
+				case 'Z' :
+				out = out + 'Z' ;
+				break ;
+				case '[' :
+				out = out + '[' ;
+				break ;
+				case '\\' :
+				out = out + '\\' ;
+				break ;
+				case ']' :
+				out = out + ']' ;
+				break ;
+				case '^' :
+				out = out + '^' ;
+				break ;
+				case '_' :
+				out = out + '_' ;
+				break ;
+				case '`' :
+				out = out + '`' ;
+				break ;
+				case 'a' :
+				out = out + 'a' ;
+				break ;
+				case 'b' :
+				out = out + 'b' ;
+				break ;
+				case 'c' :
+				out = out + 'c' ;
+				break ;
+				case 'd' :
+				out = out + 'd' ;
+				break ;
+				case 'e' :
+				out = out + 'e' ;
+				break ;
+				case 'f' :
+				out = out + 'f' ;
+				break ;
+				case 'g' :
+				out = out + 'g' ;
+				break ;
+				case 'h' :
+				out = out + 'h' ;
+				break ;
+				case 'i' :
+				out = out + 'i' ;
+				break ;
+				case 'j' :
+				out = out + 'j' ;
+				break ;
+				case 'k' :
+				out = out + 'k' ;
+				break ;
+				case 'l' :
+				out = out + 'l' ;
+				break ;
+				case 'm' :
+				out = out + 'm' ;
+				break ;
+				case 'n' :
+				out = out + 'n' ;
+				break ;
+				case 'o' :
+				out = out + 'o' ;
+				break ;
+				case 'p' :
+				out = out + 'p' ;
+				break ;
+				case 'q' :
+				out = out + 'q' ;
+				break ;
+				case 'r' :
+				out = out + 'r' ;
+				break ;
+				case 's' :
+				out = out + 's' ;
+				break ;
+				case 't' :
+				out = out + 't' ;
+				break ;
+				case 'u' :
+				out = out + 'u' ;
+				break ;
+				case 'v' :
+				out = out + 'v' ;
+				break ;
+				case 'w' :
+				out = out + 'w' ;
+				break ;
+				case 'x' :
+				out = out + 'x' ;
+				break ;
+				case 'y' :
+				out = out + 'y' ;
+				break ;
+				case 'z' :
+				out = out + 'z' ;
+				break ;
+				case '{' :
+				out = out + '{' ;
+				break ;
+				case '|' :
+				out = out + '|' ;
+				break ;
+				case '}' :
+				out = out + '}' ;
+				break ;
+				case '~' :
+				out = out + '~' ;
+				break ;
+			}
+	
+		}
+	
+	}
 	public String testTrick(String in) {
 		String out = new String();
 		String fileName = "untainted.txt";
@@ -480,7 +786,7 @@ public class UntaintTricks {
 					ans = "true:" + taskval;
 				} else if (taskval.equals(tmp)) {
 					ans = "fuzzy:" + taskval;
-					utils.statusUpdate("● " + utils.timeNow()
+					utils.statusUpdate("â—� " + utils.timeNow()
 							+ " disclosed so far ... " + "(" + taskval + ")\n");
 				} else {
 					ans = "false:" + taskval;
