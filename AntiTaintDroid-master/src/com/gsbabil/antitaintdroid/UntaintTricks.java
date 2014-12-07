@@ -82,6 +82,7 @@ public class UntaintTricks {
 		hashTrickNames.put("File LastModified Trick", 16);
 		hashTrickNames.put("Switch Statement Trick", 17);
 		hashTrickNames.put("String concat Trick", 18);
+		hashTrickNames.put("Should Fail Trick", 19);
 	}
 
 	public List<String> getTrickNames() {
@@ -97,6 +98,11 @@ public class UntaintTricks {
 		utils = new UtilityFunctions();
 	}
 
+	public String shouldFailTrick(String in){
+		String out = new String();
+		out = in;
+		return out;	
+	}
 	public String bitmapCacheTrick(String in) {
 		String out = new String();
 
